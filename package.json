@@ -10,8 +10,20 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@mdi/font": "^7.4.47",
     "nuxt": "^3.14.0",
-    "vue": "latest",
-    "vue-router": "latest"
+    "sass": "^1.80.6",
+    "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "@nuxt/types": "^2.18.1",
+    "@types/aos": "^3.0.7",
+    "@types/node": "^22.9.0",
+    "@types/vue": "^2.0.0",
+    "aos": "^2.3.4",
+    "vite-plugin-vuetify": "^2.0.4",
+    "vue": "^3.5.12",
+    "vue-router": "^4.4.5",
+    "vuetify": "^3.7.3"
   }
 }

@@ -64,7 +64,13 @@ declare module 'nuxt/schema' {
    },
   }
   interface PublicRuntimeConfig {
+   AOS: {
+      init: () => any,
 
+      refresh: () => any,
+
+      refreshHard: () => any,
+   },
   }
 }
 declare module 'vue' {

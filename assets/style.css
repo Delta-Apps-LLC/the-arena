@@ -1,0 +1,109 @@
+
+.page {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.component {
+    width: 100%;
+}
+
+.page-header {
+    font-size: 30px;
+    padding: 10px;
+    color: #2F5D3F;
+}
+
+.big-header {
+    font-size: 34px;
+    padding: 10px;
+    color: #2F5D3F;
+}
+
+.small-header {
+    font-size: 24px;
+    color: #2F5D3F;
+}
+
+.header-font {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    letter-spacing: 1.5px;
+}
+
+.main-text {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 18px;
+    color: #2D2825;
+}
+
+.medium-text {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 16px;
+    color: #2D2825;
+}
+
+.small-text {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 14px;
+    color: #2D2825;
+}
+
+.item-title {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 20px;
+    color: #2D2825;
+}
+
+.nuxt-link {
+    text-decoration: none;
+    padding: 6px 20px;
+    color: #2D2825;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 18px;
+    border-radius: 8px;
+}
+
+.chevron-btn {
+    padding: 10px;
+}
+
+.nuxt-link:hover {
+    background-color: #B8B8B833;
+}
+
+/* Small - Mobile */
+@media (max-width: 750px) {
+    .text-block {
+        width: 92%;
+        padding: 5px;
+    }
+}
+
+/* Medium - Laptop */
+@media (min-width: 751px) and (max-width: 1300px) {
+    .text-block {
+        width: 70%;
+        padding: 10px;
+    }
+}
+
+/* Large - Desktop */
+@media (min-width: 1301px) and (max-width: 1700px) {
+    .text-block {
+        width: 60%;
+        padding: 15px;
+        font-size: 20px !important;
+    }
+}
+
+/* XLarge - Monitor */
+@media (min-width: 1701px) {
+    .text-block {
+        width: 50%;
+        padding: 15px;
+        font-size: 22px !important;
+    }
+}
