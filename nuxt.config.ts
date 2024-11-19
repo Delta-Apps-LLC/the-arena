@@ -12,15 +12,16 @@ export default defineNuxtConfig({
     '@nuxt/ui'
   ],
   nitro: {
-    // Use modern Netlify Edge preset instead of legacy
-    preset: 'netlify-edge',
-    // Disable legacy compatibility mode
-    compatibilityDate: '2024-02-15',
-    // External module handling
+    // Switch back to regular preset since edge is causing polyfill issues
+    preset: 'netlify',
     externals: {
-      external: ['nitropack', 'nitropa'],
-      inline: []
-    }
+      external: [
+        'nitropack',
+        'nitropa',
+        '_deno-env-polyfill'
+      ]
+    },
+    moduleSideEffects: ['unenv/runtime/polyfill/fetch.node'],
   },
 
   vite: {
@@ -30,9 +31,13 @@ export default defineNuxtConfig({
           'nitropack',
           'nitropa',
           /^node:/,
-          /^netlify-lambda/
+          /_deno-env-polyfill/,
+          /^netlify-(edge|lambda)/
         ]
       }
+    },
+    optimizeDeps: {
+      exclude: ['nitropack', 'nitropa']
     }
-  }
+  },
 })
