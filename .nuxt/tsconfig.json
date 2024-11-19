@@ -120,7 +120,7 @@
         "./tailwind.config/*"
       ],
       "#app-manifest": [
-        "./manifest/meta/ef85ce62-3055-44e0-8c95-3d4d163c401c.json"
+        "./manifest/meta/aa1779b2-2767-473b-b92e-a0d93b9bf127.json"
       ],
       "#components": [
         "./components"
@@ -188,6 +188,6 @@
     "../node_modules/@nuxt/devtools/dist/runtime/server",
     "../node_modules/@nuxt/telemetry/runtime/server",
     "../node_modules/@nuxt/telemetry/dist/runtime/server",
-    "../.output"
+    "../.netlify/functions-internal"
   ]
 }
