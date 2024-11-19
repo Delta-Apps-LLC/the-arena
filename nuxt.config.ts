@@ -4,30 +4,59 @@ import { defineNuxtConfig } from 'nuxt/config'
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-  ssr: true,
   pages: true,
+  ssr: true,
   css: [],
   plugins: [],
   modules: [
     '@nuxt/ui'
   ],
-  build: {
-    transpile: ['nitropack'],
-  },
   // Nitro configuration
   nitro: {
     preset: 'netlify',
-    // Prevent module resolution issues
+    // More explicit external handling
     externals: {
-      inline: ['nitropack']
-    }
+      inline: ['nitropack'],
+      external: [
+        'consola',
+        'unenv',
+        'unstorage',
+      ]
+    },
+    // Prevent server-only modules from being bundled
+    moduleSideEffects: ['unenv/runtime/polyfill/fetch.node'],
   },
+
   // Vite configuration
   vite: {
     build: {
       rollupOptions: {
-        external: [/^nitropack/]
+        external: [
+          /^node:.*/, 
+          /^nitropack.*/, 
+          /^@netlify.*/,
+          /^unified.*/,
+          /^remark.*/
+        ]
       }
+    },
+    optimizeDeps: {
+      exclude: ['nitropack', 'fsevents']
     }
   },
+
+  // Build configuration
+  build: {
+    transpile: ['nitropack'],
+  },
+
+  // Watch configuration
+  watch: [
+    '!**/{node_modules,dist,build}/**'
+  ],
+
+  experimental: {
+    // Enable more stable bundling
+    payloadExtraction: true
+  }
 })
