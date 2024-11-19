@@ -12,36 +12,27 @@ export default defineNuxtConfig({
     '@nuxt/ui'
   ],
   nitro: {
-    preset: 'netlify',
-    // Explicitly mark nitropack as external
+    // Use modern Netlify Edge preset instead of legacy
+    preset: 'netlify-edge',
+    // Disable legacy compatibility mode
+    compatibilityDate: '2024-02-15',
+    // External module handling
     externals: {
       external: ['nitropack', 'nitropa'],
-      inline: [] // Empty to prevent auto-inlining
-    },
+      inline: []
+    }
   },
 
   vite: {
-    ssr: {
-      // Exclude nitropack from SSR bundling
-      noExternal: true,
-      external: [
-        'nitropack',
-        'nitropa',
-      ]
-    },
     build: {
       rollupOptions: {
-        // Exclude from client-side bundle
         external: [
           'nitropack',
           'nitropa',
-          /^node:/
+          /^node:/,
+          /^netlify-lambda/
         ]
       }
-    },
-    optimizeDeps: {
-      // Exclude from dependency optimization
-      exclude: ['nitropack', 'nitropa']
     }
   }
 })
