@@ -11,15 +11,37 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/ui'
   ],
-  build: {
-    transpile: [],
-  },
-  // Nitro configuration for static generation
   nitro: {
     preset: 'netlify',
-    prerender: {
-      crawlLinks: true,
-      routes: ['/']
-    }
+    // Explicitly mark nitropack as external
+    externals: {
+      external: ['nitropack', 'nitropa'],
+      inline: [] // Empty to prevent auto-inlining
+    },
   },
+
+  vite: {
+    ssr: {
+      // Exclude nitropack from SSR bundling
+      noExternal: true,
+      external: [
+        'nitropack',
+        'nitropa',
+      ]
+    },
+    build: {
+      rollupOptions: {
+        // Exclude from client-side bundle
+        external: [
+          'nitropack',
+          'nitropa',
+          /^node:/
+        ]
+      }
+    },
+    optimizeDeps: {
+      // Exclude from dependency optimization
+      exclude: ['nitropack', 'nitropa']
+    }
+  }
 })
