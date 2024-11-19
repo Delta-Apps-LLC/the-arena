@@ -11,4 +11,13 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/ui'
   ],
+  nitro: {
+    // This is what replaces target: 'static'
+    prerender: {
+      crawlLinks: true,
+      routes: ['/'],
+    },
+    static: true,
+    preset: 'netlify'
+  },
 })
