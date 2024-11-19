@@ -46,9 +46,13 @@
         <div class="featured-item">
           <p class="featured-item-title item-title">{{ featuredEvent.title }}</p>
           <div class="featured-item-description main-text">
-            <v-icon class="chevron-btn" @click="increment()" size="35">mdi-chevron-left</v-icon>
-            <img :src="images[index]" height="110px" />
-            <v-icon class="chevron-btn" @click="decrement()" size="35">mdi-chevron-right</v-icon>
+            <button class="chevron-btn" @click="increment()">
+              <UIcon class="w-8 h-8" name="i-mdi-chevron-left"></UIcon>
+            </button>
+            <img class="event-img" :src="images[index]" />
+            <button class="chevron-btn" @click="decrement()">
+              <UIcon class="w-8 h-8" name="i-mdi-chevron-right"></UIcon>
+            </button>
           </div>
           <p class="main-text" style="font-size: 14px; margin-bottom: 5px;">{{ featuredChallenge.date }}</p>
         </div>
@@ -243,6 +247,10 @@ function decrement() {
   }
 }
 
+.event-img {
+  height: 110px;
+}
+
 .featured-item {
   background-color: #B8B8B8;
   display: flex;
@@ -270,16 +278,11 @@ function decrement() {
 }
 
 .chevron-btn {
-  height: 50px;
-  width: 50px;
-  padding: 15px;
-  margin: 10px;
   border-radius: 50%;
   color: #2D2825;
 }
 
 .chevron-btn:hover {
-  background-color: #F3F7F533;
   cursor: pointer;
 }
 

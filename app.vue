@@ -1,57 +1,53 @@
 <template>
   <NuxtLayout>
-    <v-app id="app">
-      <v-app-bar id="app-bar">
-        <v-app-bar-title>
-          <button id="logo-btn" @click="toPage('/')">
-            <img src="~/assets/images/title-logo-no-bg.png" height="50px" />
-          </button>
-        </v-app-bar-title>
-        <v-spacer />
+    <div id="app">
+      <header id="app-bar">
+        <RouterLink to="/">
+          <img id="logo-btn" src="~/assets/images/title-logo-no-bg.png" />
+        </RouterLink>
 
-        <div v-if="windowWidth >= 800">
-          <v-btn @click="toPage(btn.to)"
+        <div v-if="windowWidth > 800">
+          <RouterLink class="nuxt-link"
             v-for="(btn, i) in navBtns"
             :key="i"
-          >{{ btn.title }}</v-btn>
+            :to="btn.to"
+          >{{ btn.title }}</RouterLink>
         </div>
 
-        <v-menu v-if="windowWidth < 800"
-          close-on-content-click
-        >
-          <template v-slot:activator="{ props }">
-            <v-btn v-bind="props" icon>
-              <v-icon size="30">mdi-menu</v-icon>
-            </v-btn>
+        <UPopover v-if="windowWidth <= 800">
+          <UButton color="transparent">
+            <UIcon name="i-mdi-menu" class="w-8 h-8" style="color: #2F5D3F;"></UIcon>
+          </UButton>
+
+          <template #panel="{ close }">
+            <div class="p-4" style="display: flex; flex-direction: column;">
+              <RouterLink class="nuxt-link"
+                v-for="(btn, i) in navBtns"
+                :key="i"
+                :to="btn.to"
+                @click="close"
+              >{{ btn.title }}</RouterLink>
+            </div>
           </template>
+        </UPopover>
 
-          <v-list>
-            <v-list-item
-              v-for="(item, index) in navBtns"
-              :key="index"
-              @click="toPage(item.to)"
-            >
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </v-menu>
-      </v-app-bar>
-
+      </header>
+      
       <v-main>
-        <NuxtPage />
+        <NuxtPage style="margin-top: 70px;" />
       </v-main>
-
+      
       <NuxtLink
         v-if="route.path != '/contact'"
         class="nuxt-link"
         id="newsletter-btn"
         to="/contact"
         style="background-color: #B8B8B888;"
-      >
+        >
         Join Our Newsletter
       </NuxtLink>
-
-    </v-app>
+    
+    </div>
   </NuxtLayout>
 </template>
 
@@ -97,12 +93,21 @@ const navBtns = [
 }
 
 #app-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
   background-color: #D4C5B4;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 9999;
 }
 
 #logo-btn {
-  display: flex;
-  align-items: center;
+  height: 50px;
 }
 
 #newsletter-btn {
