@@ -12,22 +12,14 @@ export default defineNuxtConfig({
     '@nuxt/ui'
   ],
   build: {
-    transpile: ['nitropack'],
+    transpile: [],
   },
-  // Nitro configuration
+  // Nitro configuration for static generation
   nitro: {
     preset: 'netlify',
-    // Prevent module resolution issues
-    externals: {
-      inline: ['nitropack']
-    }
-  },
-  // Vite configuration
-  vite: {
-    build: {
-      rollupOptions: {
-        external: [/^nitropack/]
-      }
+    prerender: {
+      crawlLinks: true,
+      routes: ['/']
     }
   },
 })
